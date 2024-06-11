@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "16"
+          node-version: "18"
 
       - name: Install dependencies
         run: npm install
@@ -25,16 +25,15 @@ jobs:
         run: npm run build
 
       - name: Deploy to server
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-          REMOTE_DEPLOY_PATH: ${{ secrets.REMOTE_DEPLOY_PATH }}
-        run: |
-          echo "$SSH_PRIVATE_KEY" > private_key
-          chmod 600 private_key
-          rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" dist/ $SSH_USERNAME@$SSH_HOST:$REMOTE_DEPLOY_PATH
-          ssh -i private_key -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST << 'EOF'
-          cd $REMOTE_DEPLOY_PATH
+        uses: appleboy/ssh-action@master
+        with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 22
+        script: |
+          cd /home/www/vue-deploy-test
+          git pull origin main
+          git status
+          npm install --only=prod
           systemctl restart nginx
-          EOF
