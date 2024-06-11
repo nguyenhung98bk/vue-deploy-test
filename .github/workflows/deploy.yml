@@ -32,6 +32,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
+            sudo su root
             cd /home/www/vue-deploy-test
             git pull origin main
             git status
