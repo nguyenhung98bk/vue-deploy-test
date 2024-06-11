@@ -27,13 +27,13 @@ jobs:
       - name: Deploy to server
         uses: appleboy/ssh-action@master
         with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 22
-        script: |
-          cd /home/www/vue-deploy-test
-          git pull origin main
-          git status
-          npm install --only=prod
-          systemctl restart nginx
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /home/www/vue-deploy-test
+            git pull origin main
+            git status
+            npm install --only=prod
+            systemctl restart nginx
