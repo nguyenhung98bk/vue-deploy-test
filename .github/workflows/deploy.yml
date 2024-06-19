@@ -41,7 +41,7 @@ jobs:
           echo "=====4====="
           sudo su root
           echo "=====5====="
-          cd $REMOTE_DEPLOY_PATH
+          cd /home/www/vue-deploy-test/
           echo "=====6====="
           git pull
           echo "=====7====="
