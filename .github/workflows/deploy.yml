@@ -31,21 +31,18 @@ jobs:
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
           REMOTE_DEPLOY_PATH: ${{ secrets.REMOTE_DEPLOY_PATH }}
         run: |
-          echo "=====1====="
           echo "$SSH_PRIVATE_KEY" > private_key
           echo $SSH_PRIVATE_KEY
-          echo "=====2====="
           chmod 600 private_key
-          echo "=====3====="
           ssh -i private_key -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST -t
-          echo "=====4====="
           sudo su root
-          echo "=====5====="
           pwd
-          echo "=====6====="
+          echo "=====1====="
           git checkout main
           git pull origin main
+          echo "=====2====="
+          git fetch
+          echo "=====3====="
           git status
-          echo "=====7====="
+          echo "=====4====="
           npm run build
-          echo "=====8====="
