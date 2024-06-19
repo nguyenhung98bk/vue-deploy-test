@@ -42,7 +42,6 @@ jobs:
           sudo su root
           echo "=====5====="
           pwd
-          cd /home/www/vue-deploy-test/
           echo "=====6====="
           git pull
           echo "=====7====="
