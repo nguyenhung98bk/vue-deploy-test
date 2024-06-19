@@ -47,5 +47,3 @@ jobs:
           echo "=====7====="
           npm run build
           echo "=====8====="
-          systemctl restart nginx
-          echo "=====9====="
