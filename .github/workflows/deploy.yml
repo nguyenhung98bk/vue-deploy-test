@@ -36,16 +36,18 @@ jobs:
           echo $SSH_PRIVATE_KEY
           echo "=====2====="
           chmod 600 private_key
-           echo "=====3====="
-          ssh -i private_key $SSH_USERNAME@$SSH_HOST
-           echo "=====4====="
+          echo "=====3====="
+          ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+          echo "=====3,5====="
+          ssh -i private_key -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST -t
+          echo "=====4====="
           sudo su root
-           echo "=====5====="
+          echo "=====5====="
           cd $REMOTE_DEPLOY_PATH
-           echo "=====6====="
+          echo "=====6====="
           git pull
-           echo "=====7====="
+          echo "=====7====="
           npm run build
-           echo "=====8====="
+          echo "=====8====="
           systemctl restart nginx
-           echo "=====9====="
+          echo "=====9====="
