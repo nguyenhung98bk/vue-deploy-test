@@ -33,11 +33,19 @@ jobs:
         run: |
           echo "=====1====="
           echo "$SSH_PRIVATE_KEY" > private_key
+          echo $SSH_PRIVATE_KEY
           echo "=====2====="
           chmod 600 private_key
+           echo "=====3====="
           ssh -i private_key $SSH_USERNAME@$SSH_HOST
+           echo "=====4====="
           sudo su root
+           echo "=====5====="
           cd $REMOTE_DEPLOY_PATH
+           echo "=====6====="
           git pull
+           echo "=====7====="
           npm run build
+           echo "=====8====="
           systemctl restart nginx
+           echo "=====9====="
