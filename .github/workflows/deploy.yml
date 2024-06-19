@@ -45,6 +45,7 @@ jobs:
           echo "=====6====="
           git checkout main
           git pull origin main
+          git status
           echo "=====7====="
           npm run build
           echo "=====8====="
