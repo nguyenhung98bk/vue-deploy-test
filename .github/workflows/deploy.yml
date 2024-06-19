@@ -31,7 +31,9 @@ jobs:
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
           REMOTE_DEPLOY_PATH: ${{ secrets.REMOTE_DEPLOY_PATH }}
         run: |
+          echo "=====1====="
           echo "$SSH_PRIVATE_KEY" > private_key
+          echo "=====2====="
           chmod 600 private_key
           ssh -i private_key $SSH_USERNAME@$SSH_HOST
           sudo su root
