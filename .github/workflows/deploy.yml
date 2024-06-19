@@ -34,15 +34,8 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > private_key
           echo $SSH_PRIVATE_KEY
           chmod 600 private_key
-          ssh -i private_key -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST -t
-          sudo su root
-          pwd
-          echo "=====1====="
-          git checkout main
-          git pull origin main
-          echo "=====2====="
-          git fetch
-          echo "=====3====="
-          git status
-          echo "=====4====="
-          npm run build
+          ssh -i private_key -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST -t << EOF
+            sudo su root
+            git pull origin main
+            npm run build
+          EOF
