@@ -41,7 +41,7 @@ jobs:
           echo "=====4====="
           sudo su root
           echo "=====5====="
-          cd /home/www/vue-deploy-test/
+          cd "/home/www/vue-deploy-test/"
           echo "=====6====="
           git pull
           echo "=====7====="
