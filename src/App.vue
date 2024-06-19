@@ -14,7 +14,7 @@ import HelloWorld from "./components/HelloWorld.vue";
     />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!xxxxxxxxxxxxxxxxxxxxxxxxxxxx" />
+      <HelloWorld msg="You did it!11111111" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
