@@ -37,8 +37,6 @@ jobs:
           echo "=====2====="
           chmod 600 private_key
           echo "=====3====="
-          ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
-          echo "=====3,5====="
           ssh -i private_key -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST -t
           echo "=====4====="
           sudo su root
